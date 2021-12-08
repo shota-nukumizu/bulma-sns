@@ -10,9 +10,11 @@ TITLE_CHOICES = (
 
 class ArticleModel(models.Model):
     name = models.CharField(max_length=70)
-    title = models.CharField(max_length=100, choices=TITLE_CHOICES)
+    tag = models.CharField(max_length=50, choices=TITLE_CHOICES)
+    title = models.CharField(max_length=100)
 
     content = MDTextField()
+    image = models.ImageField(upload_to='')
     created_at = models.DateField(verbose_name='作成日', auto_now=True)
 
     def __str__(self):
