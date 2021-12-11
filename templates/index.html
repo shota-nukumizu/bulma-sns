@@ -4,8 +4,34 @@
 <title>投稿内容</title>
 {% endblock title %}
 
-{% block content %}
-<h1>This is an Index Page.</h1>
+{% block header %}
+<div class="container is-fullhd">
+    <div class="notification is-primary">
+        <h1><i class="fas fa-globe"></i>Sample SNS Application</h1> 
+        <h3>～仕事の仲間と気軽に交流を楽しみましょう！！～</h3>
+    </div>
+</div>
+{% endblock header %}
 
-<a href="{% url 'logout' %}">ログアウト</a>
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <a href="{% url 'create' %}" class="button is-link is-large"><i class="fas fa-plus"></i>投稿する</a>
+    {% for item in object_list %}
+    <div class="card">
+        <h5 class="card-header">投稿日 {{ item.created_at }}</h5>
+        <h5 class="card-header">投稿者 {{ item.name }}</h5>
+        <div class="card-body">
+            <span class="tag is-{{ item.tag }} is-large">
+                <h5 class="card-title">タイトル {{ item.title }}</h5>
+            </span>
+        </div>
+    </div>
+    {% endfor %}
+    <a href="{% url 'logout' %}" class="button is-link">ログアウト</a>
+</div>
+{% else %}
+please login.
+<a href="{% url 'login' %}">ログイン</a>
+{% endif %}
 {% endblock content %}

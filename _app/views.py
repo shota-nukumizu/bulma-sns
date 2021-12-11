@@ -1,7 +1,13 @@
+from .models import ArticleModel
+
+from django.urls import reverse_lazy
+
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
 from django.contrib.auth import authenticate, login, logout
+
+from django.views.generic import CreateView
 
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -34,11 +40,18 @@ def loginfunc(request):
 	
 	return render(request, 'login.html', {})
 
-
 @login_required
 def index_func(request):
-	return render(request, 'index.html', {})
+	object_list = ArticleModel.objects.all()
+	return render(request, 'index.html', {'object_list': object_list})
 
 def logoutfunc(request):
 	logout(request)
 	return redirect('login')
+
+
+class ArticleCreate(CreateView):
+	template_name = 'create.html'
+	model = ArticleModel
+	fields = {'title', 'content', 'image', 'name', 'tag'}
+	success_url = reverse_lazy('index')
