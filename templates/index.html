@@ -28,6 +28,7 @@
             <a href="{% url 'detail' item.pk %}" class="button is-primary is-light"><i class="fas fa-info-circle"></i>詳細</a>
             {% if user.username == item.name %}
             <a href="{% url 'update' item.pk %}" class="button is-success is-light"><i class="fas fa-pen"></i>編集する</a>
+            <a href="{% url 'delete' item.pk %}" class="button is-danger is-light"><i class="fas fa-trash-alt"></i>削除する</a>
             {% endif %}
         </div>
     </div>

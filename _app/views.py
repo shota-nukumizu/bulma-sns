@@ -53,6 +53,10 @@ def detailfunc(request, pk):
     item = get_object_or_404(ArticleModel, pk=pk)
     return render(request, 'detail.html', {'item': item})
 
+def deletefunc(request, pk):
+    item = ArticleModel.objects.delete(pk=pk)
+    return redirect('index')
+
 
 class ArticleCreate(CreateView):
 	template_name = 'create.html'
