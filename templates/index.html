@@ -23,8 +23,12 @@
         <h5 class="card-header">投稿者 {{ item.name }}</h5>
         <div class="card-body">
             <span class="tag is-{{ item.tag }} is-large">
-                <h5 class="card-title">タイトル {{ item.title }}</h5>
+                <h5 class="card-title">{{ item.title }}</h5>
             </span>
+            <a href="{% url 'detail' item.pk %}" class="button is-primary is-light"><i class="fas fa-info-circle"></i>詳細</a>
+            {% if user.username == item.name %}
+            <a href="{% url 'update' item.pk %}" class="button is-success is-light"><i class="fas fa-pen"></i>編集する</a>
+            {% endif %}
         </div>
     </div>
     {% endfor %}

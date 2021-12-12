@@ -1,21 +1,17 @@
 {% extends 'base.html' %}
 
 {% block title %}
-<title>投稿の作成</title>
-{% endblock title %}
-
-{% block header %}
-<h1>投稿の作成</h1>
+<title>投稿の編集</title>
 <hr>
-{% endblock header %}
+{% endblock title %}
 
 {% block content %}
 {% if user.is_authenticated %}
 <form method="POST" enctype="multipart/form-data">{% csrf_token %}
     <p>title: <input type="text" name="title"></p>
     <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-            style="height: 200px" name="content"></textarea>
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"
+            name="content"></textarea>
         <label for="floatingTextarea2">Contents</label>
     </div>
     <p><input type="file" name="image"></p>
@@ -26,7 +22,7 @@
         <option value="info">イベント</option>
         <option value="success">その他</option>
     </select>
-    <input type="submit" value="作成する" class="button is-success is-light">
+    <input type="submit" value="update" class="button is-success is-light">
 </form>
 {% else %}
 Please Login
